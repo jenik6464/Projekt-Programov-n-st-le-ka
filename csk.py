@@ -57,8 +57,7 @@ def spawn_enemy(is_boss=False, pos=None):
             "speed": ENEMY_SPEED_REGULAR / 5, "radius": 120, "color": "orange",
             "is_boss": True, "can_shoot": True,
             "last_spawn_health": 5000,
-            "last_shot": 0, "shoot_cooldown": 1700 # Sníženo o 15 % (z 2000)
-        }
+            "last_shot": 0, "shoot_cooldown": 1700 # Rychlost střílení bosse
     else:
         total_spawned_count += 1
         can_shoot = (total_spawned_count % 10 == 0)
@@ -134,7 +133,7 @@ while running:
                     "color": "magenta" if is_super else ("cyan" if rapid_fire_active else "yellow")
                 })
 
-        # Update kulek
+        # Update střel
         for bullet in bullets:
             bullet["pos"] += bullet["dir"] * 1000 * dt
             pygame.draw.circle(screen, bullet["color"], bullet["pos"], BULLET_RADIUS)
